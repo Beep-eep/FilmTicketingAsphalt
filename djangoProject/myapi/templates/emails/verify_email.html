@@ -1,0 +1,7 @@
+{% extends "emails/base.html" %}
+{% block content %}
+<h1 style="margin:0 0 12px;font-size:22px;">Confirm your email</h1>
+<p style="margin:0 0 20px;font-size:15px;line-height:22px;">Hi {{ user.username }}, confirm this address to finish creating your account. Then you can pick seats and buy tickets.</p>
+<p style="margin:0 0 20px;"><a href="{{ link }}" style="display:inline-block;background:#f0a830;color:#1d1f23;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:6px;">Confirm email</a></p>
+<p style="margin:0;font-size:13px;line-height:20px;color:#55585f;">The button works for 24 hours. If it doesn't open, paste this link into your browser:<br><a href="{{ link }}" style="color:#55585f;word-break:break-all;">{{ link }}</a></p>
+{% endblock %}

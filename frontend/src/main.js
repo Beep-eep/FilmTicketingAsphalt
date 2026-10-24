@@ -1,43 +1,16 @@
 import { createApp } from 'vue'
-import axios from "axios"
-import AuthService from "@/api/authService.js"
+
+import '@fontsource-variable/big-shoulders-display'
+import '@fontsource-variable/archivo/wdth.css'
+import './styles/base.css'
+
 import App from './App.vue'
-
-import store from './store'
 import router from './router'
+import store from './store'
+import { bindAuth } from './api/client'
+import { loadConfig } from './composables/useConfig'
 
-axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.withCredentials = true
-axios.defaults.baseURL='http://127.0.0.1:8000/'
-axios.defaults.timeout = 10000
+bindAuth(store, router)
+loadConfig()
 
-const app = createApp(App)
-
-axios.interceptors.request.use(
-    async (config) => {
-        if(config.requireAuth){
-            let accessToken = localStorage.getItem('access_token')
-            if(!accessToken)
-                await router.push('/login')
-            accessToken = JSON.parse(accessToken)
-            if(AuthService.is_accessToken_expired(accessToken)){
-                try{
-                    accessToken = await AuthService.refreshToken()
-                }catch (e){
-                    console.log(e)
-                    await store.dispatch('auth/logout')
-                    await router.push('/login')
-                }
-            }
-            config.headers.Authorization = 'Bearer ' + accessToken
-        }
-        return config
-    },(error) => {
-        return Promise.reject(error)
-    })
-
-app.config.globalProperties.$axios = axios
-app.use(store)
-app.use(router)
-app.mount('#app')
+createApp(App).use(store).use(router).mount('#app')

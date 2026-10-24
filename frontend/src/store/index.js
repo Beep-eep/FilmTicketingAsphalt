@@ -1,10 +1,6 @@
-import Vuex from 'vuex'
-import {auth} from "@/store/auth";
-import {createStore} from "vuex";
+import { createStore } from 'vuex'
+import { auth } from './auth'
 
 export default createStore({
-    modules: {
-        auth
-    }
-});
-
+  modules: { auth },
+})

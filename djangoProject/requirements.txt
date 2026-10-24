@@ -1,0 +1,15 @@
+# Backend dependencies (tested on Python 3.14 with MySQL 8.0, PostgreSQL 16 and SQLite)
+Django>=5.2,<6.0                     # 5.2 LTS, supported until April 2028
+djangorestframework==3.18.3
+djangorestframework-simplejwt==5.5.1 # login tokens (JWT)
+django-cors-headers==4.9.0
+django-extensions==4.1
+drf-spectacular==0.30.0              # API docs at /api/docs/
+PyMySQL[rsa]==1.2.3                  # MySQL driver for your local database (pure Python)
+psycopg[binary]==3.3.6               # PostgreSQL driver for the public deployment (Neon/Render)
+dj-database-url==3.1.2               # reads DATABASE_URL
+python-dotenv==1.2.4                 # reads djangoProject/.env
+stripe==16.0.0                       # payments
+requests==2.34.2                     # TMDB import and the Resend email backend
+whitenoise[brotli]==6.12.0           # serves the built website and static files
+gunicorn==26.2.0                     # production web server (Linux/macOS)

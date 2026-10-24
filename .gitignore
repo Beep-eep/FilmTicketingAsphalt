@@ -28,3 +28,12 @@ build/
 
 .vscode/
 
+
+# Upgrade additions
+.venv/
+djangoProject/spa/
+djangoProject/staticfiles/
+djangoProject/.env
+frontend/test-results/
+frontend/playwright-report/
+.DS_Store

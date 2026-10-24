@@ -1,0 +1,359 @@
+/* Asphalt Cinema — design tokens and base styles.
+   Night-time street outside a repertory cinema: charcoal asphalt, the white
+   backlit marquee board, sodium-vapour streetlight amber for anything you can
+   act on, and velvet red for seats someone else has taken. */
+
+:root {
+  --asphalt-950: #17181b;
+  --asphalt-900: #1e2024;
+  --asphalt-850: #24262b;
+  --asphalt-800: #2a2d32;
+  --asphalt-700: #363a41;
+  --asphalt-600: #464a52;
+  --asphalt-500: #60656e;
+  --asphalt-300: #a3a8b1;
+  --chalk: #eceee8;
+  --marquee: #f3f4ef;
+  --marquee-shade: #d9dbd3;
+  --ink: #1d1f23;
+  --sodium: #f0a830;
+  --sodium-bright: #ffc35a;
+  --sodium-deep: #b97a10;
+  --velvet: #9b2335;
+  --velvet-bright: #c43a4f;
+  --teal: #4fb3a9;
+  --teal-deep: #2e7f77;
+
+  --font-display: 'Big Shoulders Display Variable', 'Arial Narrow', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  --font-body: 'Archivo Variable', system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+
+  /* Type scale: major third (1.25) on a 16px base */
+  --step--1: 0.8rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.563rem;
+  --step-3: 1.953rem;
+  --step-4: 2.441rem;
+  --step-5: 3.052rem;
+  --step-6: 3.815rem;
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --content: 1180px;
+  --focus: 0 0 0 3px var(--asphalt-950), 0 0 0 5px var(--sodium-bright);
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--asphalt-950);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  font-variation-settings: 'wdth' 100;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fine asphalt grain over the page background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: var(--radius-s);
+}
+
+::selection {
+  background: var(--sodium);
+  color: var(--ink);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* --- Buttons -------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-height: 44px;
+  padding: 0.6em 1.15em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  background: var(--asphalt-700);
+  color: var(--chalk);
+  font-weight: 600;
+  font-size: var(--step-0);
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.btn:hover {
+  background: var(--asphalt-600);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn[disabled],
+.btn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--sodium);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--sodium-bright);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--asphalt-600);
+}
+
+.btn-ghost:hover {
+  background: var(--asphalt-800);
+}
+
+.btn-danger {
+  background: transparent;
+  border-color: var(--velvet-bright);
+  color: #f2b3bd;
+}
+
+.btn-danger:hover {
+  background: var(--velvet);
+  color: var(--chalk);
+}
+
+.btn-link {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--sodium-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.btn-link:hover {
+  background: none;
+  color: var(--chalk);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* --- Forms ----------------------------------------------------------------- */
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--asphalt-300);
+}
+
+.input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.65em 0.85em;
+  border: 1px solid var(--asphalt-600);
+  border-radius: var(--radius-s);
+  background: var(--asphalt-900);
+  transition: border-color 0.15s;
+}
+
+.input:hover {
+  border-color: var(--asphalt-500);
+}
+
+.input:focus-visible {
+  border-color: var(--sodium);
+  box-shadow: 0 0 0 3px rgba(240, 168, 48, 0.25);
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--velvet-bright);
+}
+
+.field-error {
+  color: #f2b3bd;
+  font-size: var(--step--1);
+}
+
+.field-hint {
+  color: var(--asphalt-300);
+  font-size: var(--step--1);
+}
+
+/* --- Small shared pieces -------------------------------------------------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.3em 0.9em;
+  border: 1px solid var(--asphalt-600);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--asphalt-300);
+  font-size: var(--step--1);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.chip:hover {
+  color: var(--chalk);
+  border-color: var(--asphalt-500);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--chalk);
+  border-color: var(--chalk);
+  color: var(--ink);
+}
+
+.muted {
+  color: var(--asphalt-300);
+}
+
+.notice {
+  padding: 14px 16px;
+  border-left: 3px solid var(--sodium);
+  border-radius: var(--radius-s);
+  background: var(--asphalt-850);
+  font-size: var(--step--1);
+}
+
+.notice-danger {
+  border-left-color: var(--velvet-bright);
+}
+
+.skeleton {
+  background: linear-gradient(100deg, var(--asphalt-850) 40%, var(--asphalt-800) 50%, var(--asphalt-850) 60%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: var(--radius-s);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.route-enter-active,
+.route-leave-active {
+  transition: opacity 0.18s ease;
+}
+
+.route-enter-from,
+.route-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

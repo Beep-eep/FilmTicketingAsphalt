@@ -1,0 +1,13 @@
+{% extends "emails/base.html" %}
+{% block content %}
+<h1 style="margin:0 0 4px;font-size:22px;">You're booked for {{ film.title }}</h1>
+<p style="margin:0 0 20px;font-size:15px;color:#55585f;">Booking {{ order.code }}</p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="font-size:15px;line-height:22px;border-top:2px dashed #c9cbc4;">
+  <tr><td style="padding:12px 0 4px;color:#55585f;width:110px;">When</td><td style="padding:12px 0 4px;font-weight:700;">{{ date }}, {{ time }}</td></tr>
+  <tr><td style="padding:4px 0;color:#55585f;">Where</td><td style="padding:4px 0;font-weight:700;">{{ room.name }}</td></tr>
+  <tr><td style="padding:4px 0;color:#55585f;">Seats</td><td style="padding:4px 0;font-weight:700;">{{ seats }}</td></tr>
+  <tr><td style="padding:4px 0 14px;color:#55585f;">Paid</td><td style="padding:4px 0 14px;font-weight:700;">{{ total }}</td></tr>
+</table>
+<p style="margin:8px 0 20px;"><a href="{{ tickets_link }}" style="display:inline-block;background:#f0a830;color:#1d1f23;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:6px;">Show my tickets</a></p>
+<p style="margin:0;font-size:13px;line-height:20px;color:#55585f;">Show the QR code in My tickets at the door. You can refund tickets in My tickets until shortly before the film starts.</p>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% autoescape off %}
+You're booked for {{ film.title }}.
+
+Booking: {{ order.code }}
+When:    {{ date }}, {{ time }}
+Where:   {{ room.name }}
+Seats:   {{ seats }}
+Paid:    {{ total }}
+
+Your tickets and QR codes: {{ tickets_link }}
+{% endautoescape %}

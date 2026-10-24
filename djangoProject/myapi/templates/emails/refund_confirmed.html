@@ -1,0 +1,7 @@
+{% extends "emails/base.html" %}
+{% block content %}
+<h1 style="margin:0 0 12px;font-size:22px;">Refund on its way</h1>
+<p style="margin:0 0 16px;font-size:15px;line-height:22px;">We refunded {{ amount }} for seat{{ count|pluralize }} {{ seats }} at {{ film.title }} on {{ date }}, {{ time }} (booking {{ order.code }}).</p>
+{% if is_demo %}<p style="margin:0 0 16px;font-size:13px;color:#55585f;">This booking used demo payments, so no real money moved.</p>{% else %}<p style="margin:0 0 16px;font-size:13px;line-height:20px;color:#55585f;">Card refunds usually take 5–10 business days to show up on your statement.</p>{% endif %}
+<p style="margin:0;"><a href="{{ tickets_link }}" style="color:#1d1f23;font-weight:700;">See my tickets</a></p>
+{% endblock %}

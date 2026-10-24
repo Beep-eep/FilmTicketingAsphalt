@@ -1,0 +1,32 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick this repository → Apply.
+# You'll be asked for the values marked `sync: false`. Free web services sleep
+# after 15 minutes without visitors and take about a minute to wake up.
+services:
+  - type: web
+    name: asphalt-cinema
+    runtime: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: cd djangoProject && python -m gunicorn djangoProject.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 60
+    healthCheckPath: /api/health/
+    envVars:
+      - key: DATABASE_URL            # paste your Neon (or other Postgres) connection string
+        sync: false
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SUPERUSER_USERNAME   # admin login for /admin/, created on the first deploy
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
+      - key: STRIPE_SECRET_KEY       # sk_test_... (leave empty to use demo payments)
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET   # whsec_... from the webhook endpoint you add in Stripe
+        sync: false
+      - key: RESEND_API_KEY          # Render's free plan blocks SMTP, so email goes through Resend's API
+        sync: false
+      - key: DEFAULT_FROM_EMAIL      # e.g. Asphalt Cinema <tickets@your-verified-domain.com>
+        sync: false
+      - key: TMDB_API_KEY            # optional: real posters and films
+        sync: false

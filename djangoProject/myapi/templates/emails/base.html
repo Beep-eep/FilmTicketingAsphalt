@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{{ cinema_name }}</title>
+</head>
+<body style="margin:0;padding:0;background:#25272c;font-family:Helvetica,Arial,sans-serif;color:#1d1f23;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#25272c;padding:32px 12px;">
+  <tr><td align="center">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;">
+      <tr><td style="padding:0 0 16px 4px;font-size:22px;font-weight:800;letter-spacing:2px;color:#f0a830;">{{ cinema_name|upper }}</td></tr>
+      <tr><td style="background:#f3f4ef;border-radius:10px;padding:28px 28px 24px;">
+        {% block content %}{% endblock %}
+      </td></tr>
+      <tr><td style="padding:16px 4px;font-size:12px;line-height:18px;color:#9a9da6;">
+        You're getting this email because of activity on your {{ cinema_name }} account. If that wasn't you, you can ignore it.
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>

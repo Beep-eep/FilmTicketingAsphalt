@@ -1,0 +1,6 @@
+{% autoescape off %}
+We refunded {{ amount }} for {{ seats }} at {{ film.title }} on {{ date }}, {{ time }} (booking {{ order.code }}).
+{% if is_demo %}This booking used demo payments, so no real money moved.{% else %}Card refunds usually take 5-10 business days to show up on your statement.{% endif %}
+
+My tickets: {{ tickets_link }}
+{% endautoescape %}

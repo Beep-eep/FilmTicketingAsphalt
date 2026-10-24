@@ -1,0 +1,9 @@
+{% autoescape off %}
+Hi {{ user.username }},
+
+Confirm this email address to finish creating your {{ cinema_name }} account:
+
+{{ link }}
+
+The link works for 24 hours. If you didn't sign up, you can ignore this email.
+{% endautoescape %}
